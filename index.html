@@ -2,26 +2,54 @@
 <html style="width:100%;height:100%;background-color:black;">
 	<head>
 		<style>
+  /* 整个页面的缩放过渡 */
+  body {
+    transition: transform 0.2s ease-in-out; /* 像游戏里一样平滑 */
+    transform-origin: center center; /* 以中心点放大 */
+  }
+
+  /* 放大时的状态 */
+  .mc-zoom {
+    transform: scale(3); /* 放大3倍，你可以改成2或4 */
+  }
+
+
   * {
     cursor: url('67.png'), auto !important;
   }
 		
-  /* 定义放大效果的样式 */
-  .zoomed-in {
-    transform: scale(1.5); /* 放大 1.5 倍，可根据需要调整 */
-    transition: transform 0.3s ease; /* 平滑过渡效果 */
-    z-index: 999;
-    position: relative;
-  }
-
-  /* 基础样式，确保过渡平滑 */
-  #content {
-    transition: transform 0.3s ease;
-    transform-origin: center center; /* 从中心放大 */
-  }
 </style>
+  document.addEventListener('keydown', function(event) {
+    // 当按下 C 键且不在输入框打字时
+    if (event.key.toLowerCase() === 'c' && event.target.tagName !== 'INPUT') {
+      document.body.classList.add('mc-zoom');
+    }
+  });
 
-         </style>
+  document.addEventListener('keyup', function(event) {
+    // 当松开 C 键时恢复
+    if (event.key.toLowerCase() === 'c') {
+      document.body.classList.remove('mc-zoom');
+    }
+  });
+</script>
+		<body>
+		</style>
+  document.addEventListener('keydown', function(event) {
+    // 当按下 C 键且不在输入框打字时
+    if (event.key.toLowerCase() === 'c' && event.target.tagName !== 'INPUT') {
+      document.body.classList.add('mc-zoom');
+    }
+  });
+
+  document.addEventListener('keyup', function(event) {
+    // 当松开 C 键时恢复
+    if (event.key.toLowerCase() === 'c') {
+      document.body.classList.remove('mc-zoom');
+    }
+  });
+</script>
+	</body>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 		<meta name="description" content="Play minecraft 1.12 in your browser" />
@@ -76,15 +104,3 @@
 	</head>
 	<body style="margin:0px;width:100%;height:100%;overflow:hidden;background-color:black;" id="game_frame"></body>
 </html>
-<script>
-  // 监听全局键盘按下事件
-  document.addEventListener('keydown', function(event) {
-    // 检查按下的键是否为 'c' 或 'C'
-    if (event.key.toLowerCase() === 'c') {
-      const mainContent = document.getElementById('content');
-      
-      // 切换放大类名
-      mainContent.classList.toggle('zoomed-in');
-    }
-  });
-</script>
