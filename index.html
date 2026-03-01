@@ -7,6 +7,89 @@
   }
 </style>
 	<title>google.classroom</title>
+	<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub 按键缩放测试</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            font-family: sans-serif;
+        }
+
+        /* 这是你要放大的中间功能区 */
+        #feature-box {
+            width: 300px;
+            height: 200px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            /* 关键：设置平滑过渡动画 */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        kbd {
+            background-color: #eee;
+            border-radius: 3px;
+            border: 1px solid #b4b4b4;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            color: #333;
+            display: inline-block;
+            font-size: 0.85em;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 4px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 这里的 ID 必须是 feature-box -->
+    <div id="feature-box">
+        <h2>核心功能区</h2>
+        <p>按下 <kbd>C</kbd> 键试试</p>
+    </div>
+
+    <script>
+        // 获取元素
+        const box = document.getElementById('feature-box');
+        let isZoomed = false;
+
+        // 监听键盘事件
+        document.addEventListener('keydown', (e) => {
+            // 排除用户在输入框打字的情况
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            // 判断是否按下了 C 键
+            if (e.key.toLowerCase() === 'c') {
+                if (!isZoomed) {
+                    box.style.transform = "scale(1.5)";
+                    isZoomed = true;
+                } else {
+                    box.style.transform = "scale(1)";
+                    isZoomed = false;
+                }
+            }
+        });
+
+        // 调试信息：如果加载成功会在控制台打印
+        console.log("脚本加载成功，等待按下 C 键...");
+    </script>
+</body>
+</html>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 		<meta name="description" content="Play minecraft 1.12 in your browser" />
