@@ -7,6 +7,46 @@
   }
 </style>
 	<title>google.classroom</title>
+	<style>
+    /* 给目标元素添加平滑动画，防止放大时抖动 */
+    #feature-box {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative; /* 确保缩放时层级可控 */
+    }
+</style>
+
+<script>
+(function() {
+    // 1. 获取目标元素（请确保你页面中有一个元素的 id 是 feature-box）
+    const box = document.getElementById('feature-box');
+    let zoomed = false;
+
+    if (!box) {
+        console.warn("未发现 id='feature-box' 的元素，请在 HTML 中指定该 ID。");
+        return;
+    }
+
+    // 2. 监听按键
+    document.addEventListener('keydown', function(e) {
+        // 如果用户正在输入文字，则不触发
+        const activeEl = document.activeElement.tagName;
+        if (activeEl === 'INPUT' || activeEl === 'TEXTAREA') return;
+
+        // 按下 C 键 (不分大小写)
+        if (e.key.toLowerCase() === 'c') {
+            if (!zoomed) {
+                box.style.transform = "scale(1.5)"; // 放大 1.5 倍，可根据需要修改
+                box.style.zIndex = "1000";         // 确保放大后在最上层
+                zoomed = true;
+            } else {
+                box.style.transform = "scale(1)";   // 恢复原状
+                box.style.zIndex = "";
+                zoomed = false;
+            }
+        }
+    });
+})();
+</script>
 	
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
