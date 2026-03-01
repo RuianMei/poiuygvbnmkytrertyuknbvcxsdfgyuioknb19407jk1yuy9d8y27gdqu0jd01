@@ -1,4 +1,4 @@
-/ 1. 获取你想放大的中间元素（例如 id 为 "feature-box" 的 div）
+// 1. 获取你想放大的中间元素（例如 id 为 "feature-box" 的 div）
 const featureBox = document.getElementById('feature-box');
 let isZoomed = false; // 记录当前缩放状态
 
